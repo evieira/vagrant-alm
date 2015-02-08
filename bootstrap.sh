@@ -1,4 +1,6 @@
 #!/bin/sh
+#Setup firewall rules
+iptables -F
 sudo yum -y install wget
 sudo yum -y install java-1.8.0-openjdk
 #Install MySQL server
@@ -11,8 +13,7 @@ sudo yum -y install java-1.8.0-openjdk
 /vagrant/bootstrap-nexus.sh
 #Install Gitblit
 /vagrant/bootstrap-gitblit.sh
-#Setup firewall rules
-iptables -F
+
 iptables -A INPUT -p tcp --dport 22 -j ACCEPT #SSH
 iptables -A INPUT -p tcp --dport 80 -j ACCEPT #HTTP
 iptables -A INPUT -p tcp --dport 443 -j ACCEPT #HTTPS
